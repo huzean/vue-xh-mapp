@@ -1,0 +1,33 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import VueScroller from 'vue-scroller'
+
+import Vant from 'vant';
+import 'vant/lib/index.css';
+import 'lib-flexible'
+// 下拉
+
+import { PullRefresh } from 'vant';
+// 字体图标
+import "./font/iconfont.css";
+import "@/common/style/reset.css";
+// import Router from 'vue-router'
+import SvgIcon from '@/components/Svg' // svg组件
+Vue.component('svgIcon', SvgIcon)
+Vue.use(PullRefresh);
+Vue.use(VueScroller,{
+  name:`Scroll`
+})
+Vue.use(Vant);
+Vue.config.productionTip = false
+
+
+new Vue({
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
+})
