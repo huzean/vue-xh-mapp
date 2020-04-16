@@ -34,7 +34,7 @@ export default {
           selectedImage: require("./assets/studtb.png"),
             normalImage: require("./assets/studya.png"),
           id: 1,
-          path: "/discountcoupon",
+          path: "/classtransfer",
           name: "学习"
         },
         {
@@ -42,7 +42,7 @@ export default {
             selectedImage: require("./assets/myb.png"),
            normalImage: require("./assets/mya.png"),
           id: 1,
-          path: "/scro",
+          path: "/Selecttheclass",
           name: "我的"
         }
       ]

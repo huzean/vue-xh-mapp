@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="modal-bg" v-show="show" @mouseup="cancelMove">
     <div class="modal-container">
       <div
@@ -20,6 +21,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 <script>
 export default {

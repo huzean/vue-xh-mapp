@@ -6,6 +6,8 @@ import study from '@/pages/home/study'
 import scro from '@/pages/home/scro'
 import discountcoupon from '@/pages/home/discountcoupon'
 import nearbycampus from '@/pages/nearbyCampus'
+import classtransfer from '@/pages/classtransfer'
+import Selecttheclass from '@/pages/Selecttheclass'
 
 
 
@@ -19,6 +21,8 @@ export default new Router({
       { path: "/scro", component:scro },
       { path: "/discountcoupon", component:discountcoupon },
       { path: "/nearbycampus", component:nearbycampus },
+      { path: "/classtransfer", component:classtransfer },
+      { path: "/Selecttheclass", component:Selecttheclass },
      
      
     

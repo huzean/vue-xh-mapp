@@ -1,67 +1,25 @@
 <template>
-  <div id="box">
-    <Head v-for="(item,index) in title " :key="index" :title="item.text"></Head>
-    <ul class="nav-title">
-      <li
-        v-for="(item,index) in Listnav"
-        :key="index"
-        :class="num==index?'changeColor':''"
-        @click="tabs(index)"
-      >
-        {{item.text}}
-        <p :class="num==index?'box':''"></p>
-      </li>
-    </ul>
-     <!--:key="'info2-'+index" -->
-    <div class="tabContent">
-      <div
-        class="discounts"
-        v-for="(item,index) in  tabcon"
-        :key="'info2-'+index"
-        v-show="index==num"
-      >
-        <div class="content">
-          <span>
-            <p id="text">
-              {{item.English}}
-              <a class="dot-a"></a>
-              {{item.text}}
-            </p>
-            <i class="character">{{item.introduce}}</i>
-            <h6 class="site">
-              <svgIcon iconName="icondizhi" />
-              {{item.site}}
-            </h6>
-            <a class="time">
-              <svgIcon iconName="iconshijian" />
-              {{item.time}}
-            </a>
-            <ul class="picture">
-              <li>
-                <img :src="item.img" />
-              </li>
-              <li>
-                <div>{{item.name}}</div>
-                <div>{{item.names}}</div>
-              </li>
-              <div class="select">
-                <a href>{{item.select}}</a>
-              </div>
-            </ul>
-          </span>
-        </div>
+  <div id="boxcontent">
+    <Head v-for="(item,index) in title " :key="index" v-bind:title="item.text"></Head>
+<!-- :class="num==click?'changeColor':''"   @click="tabs(index!)" -->
+    <div class="window"  
+     >
+      <div class="mask" v-if="showModal" @click="showModal=false"></div>
+      <div class="pop" v-if="showModal">
+        <div @click="showModal=false" class="btn">111</div>
       </div>
+      <span @click="showModal=true" class="btn">1</span>
+      <div class="mask" v-if="issho" @click="issho=false"></div>
+      <div class="pop" v-if="issho">
+        <div @click="issho=false" class="btn">222</div>
+      </div>
+      <span @click="issho=true" class="btn">2</span>
     </div>
-    <br />
+
     <!--  -->
     <div class="tabContent">
       <!--:key="'info2-'+index" -->
-      <div
-        class="discounts"
-        v-for="(item,index) in  tabcon"
-        :key="'info2-'+index"
-        v-show="index==num"
-      >
+      <div class="discounts" v-for="(item,index) in  tabcon" :key="'info2-'+index">
         <div class="content">
           <span>
             <p id="text">
@@ -93,22 +51,21 @@
           </span>
         </div>
       </div>
-    </div> 
+      <!--  -->
+    </div>
   </div>
 </template>
+
 <script>
 import Head from "@/components/head/head";
-
 export default {
-  name: "",
   data() {
     return {
-      max: 0,
-      isOpen: false,
-      num: "",
-      title: [{ text: "我的优惠券" }],
-      Listnav: [{ text: "面授" }, { text: "双师" }],
-
+      showModal: false,
+      issho: false,
+  
+      title: [{ text: "选择调入班级" }],
+    
       tabcon: [
         {
           English: "英语",
@@ -120,60 +77,30 @@ export default {
           name: "刘然然",
           names: "授课",
           select: "选择班级"
-        },
-        {
-          English: "英语",
-          text: "面授",
-          introduce: "2019年春季初一级英语压轴突破班做换行处理最多不超过2行",
-          site: "岗顶教学点",
-          time: "2019.12.15-2020.01.22 10:00-12:00",
-          img: require("../../assets/examl.png"),
-          name: "张然然",
-          names: "授课",
-          select: "选择班级"
         }
       ]
     };
   },
   components: {
     Head
-  },
-  methods: {
-    tabs(index) {
-      this.num = index;
-    }
   }
 };
 </script>
 
 <style scoped lang="less">
-#box {
-  background: rgb(248, 249, 252);
-}
-svg.svg-icon {
-  color: red;
-  width: 13px;
-  vertical-align: middle;
-}
 .changeColor {
   color: rgba(149, 108, 222, 1);
 }
-.box {
-  width: 20px;
-  margin: 3px auto;
-  border-bottom: solid 4px;
-  border-radius: 5px;
+svg.svg-icon {
+  width: 13px;
+  vertical-align: middle;
 }
-.nav-title {
-  width: 375px;
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0px 10px 0px;
-  margin: 0 auto;
-
-  li {
-    font-size: 16px;
-  }
+#boxcontent {
+  width: 100%;
+  height: 600px;
+  background: #fff;
+  // background: rgb(248, 249, 252);
+  // background: red;
 }
 .tabContent {
   margin: 0 auto;
@@ -183,7 +110,6 @@ svg.svg-icon {
   height: 233px;
   background: #fff;
   border-radius: 10px;
-
   box-sizing: border-box;
   top: 0px;
   left: 0;
@@ -192,6 +118,8 @@ svg.svg-icon {
   // align-items: center;
   margin: 0 auto;
   .content {
+    background: rgb(243, 243, 243);
+    border-radius: 8px;
     span {
       width: 313px;
       height: 200px;
@@ -272,4 +200,36 @@ svg.svg-icon {
     margin: 0 3px;
   }
 }
+// ==========弹窗
+
+.mask {
+  background-color: #000;
+  background: rgba(0, 0, 0, 0.5);
+  width: 375px;
+  height: 527px;
+  position: fixed;
+  top: 97px;
+  left: 0;
+
+  z-index: 1;
+}
+.pop {
+  background: rgba(255, 255, 255, 1);
+  width: 336px;
+  height: 527px;
+  position: fixed;
+  top: 96px;
+  margin-left: 50px;
+  border-radius: 8px;
+  z-index: 2;
+}
+.btn {
+  display: inline-block;
+
+  margin: 25px 48px;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 16px;
+}
 </style>
+
