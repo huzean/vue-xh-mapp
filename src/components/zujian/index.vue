@@ -26,7 +26,7 @@
               </div>
               <div class="bystages">
                 <a href>￥</a>
-                <a href>1888</a>
+                <a href>1000</a> 
                 <a href>分期付</a>
                 <a class="icon iconfont icon-xiajiantou"></a>
                 <span class="discounts">
@@ -48,7 +48,9 @@
 </template>
 <script>
 export default {
-  
+  props:{
+    item:{type:Object}
+  }
 };
 </script>
 <style scoped lang="less">

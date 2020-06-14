@@ -11,7 +11,7 @@
         </p>
         <span class="price">
           <p>
-            <span>￥16220</span>
+           ￥<span>16220</span>
             <a>￥</a>
             <a>0</a>
           </p>
@@ -42,7 +42,7 @@ export default {
   vertical-align: middle;
   width: 90px;
   height: 60px;
-  // border: 1px red solid;
+  //  border: 1px red solid;
   color: #fff;
   margin-top: -16px;
   img {
@@ -57,6 +57,7 @@ export default {
   height: 96px;
   margin-top: 18px;
   margin-left: 30px;
+
   span {
     p {
       font-size: 16px;
@@ -76,6 +77,9 @@ export default {
       vertical-align: top;
     }
     .price {
+      p{
+      color: rgba(170, 172, 182, 1);
+      }
       span {
         color: rgba(170, 172, 182, 1);
         font-size: 14px;

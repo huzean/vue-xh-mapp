@@ -68,13 +68,14 @@
 </template>
 <script>
 import Head from "@/components/head/head";
-
+let obj= {
+  
+}
 export default {
   name: "",
   data() {
     return {
-       
-      max: 0,
+       max: 0,
       isOpen: false,
       num: "",
       title: [{ text: "我的优惠券" }],
@@ -105,6 +106,7 @@ export default {
         }
       ]
     };
+
   },
   components: {
     Head,
@@ -112,6 +114,7 @@ export default {
   methods: {
     tabs(index) {
       this.num = index;
+      
     },
     
   }

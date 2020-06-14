@@ -1,6 +1,6 @@
 <template>
   <div class="template-div">
-    <Head v-for="(item,index) in title " :key="index" :title="item.text"></Head>
+    <Head :title="herdtitle"></Head>
     <header>
       <div class="head">
         <ul class="head-ul-left" v-for="(item,index) in headercontent " :key="index">
@@ -33,21 +33,18 @@
     <div class="campus">
       <!-- 1111 -->
       <ul class="images">
-        <li v-for="(item, index) in navCard" :key="index"
-        > 
-         <router-link to="/nearbycampus"> 
-          <img :src="item.img" alt />
-          
-          <span class="location-one">        
-            {{item.text}}
-            <p>{{item.campus}}</p>
-          </span>
-             </router-link>
-           <span class="location-one">
+        <li v-for="(item, index) in navCard" :key="index">
+          <router-link to="/nearbycampus">
+            <img :src="item.img" alt />
+            <span class="location-one">
+              {{item.text}}
+              <p>{{item.campus}}</p>
+            </span>
+          </router-link>
+          <span class="location-one">
             {{item.texts}}
             <p>{{item.campuss}}</p>
           </span>
-        
         </li>
       </ul>
     </div>
@@ -70,34 +67,35 @@
       <SJ></SJ>
       <Zujian></Zujian>
       <carthd></carthd>
-      <!-- aa -->
       <div id="box">
-      <ul class="boxcart">
-        <!-- 1111 -->
-        <li class="cart">
-          <Flashsale></Flashsale>
-          <SJ class="sj"></SJ> 
-        </li>
-        <li class="cart">
-
-        </li>
-        <li class="cart">
-
-        </li>
-      </ul>
+        <ul class="boxcart">
+          <!-- 1111 -->
+          <li class="cart">
+            <Flashsale></Flashsale>
+            <SJ class="sj"></SJ>
+          </li>
+          <li class="cart">
+<Flashsale></Flashsale>
+            <SJ class="sj"></SJ>
+          </li>
+          <li class="cart">
+<Flashsale></Flashsale>
+            <SJ class="sj"></SJ>
+          </li>
+        </ul>
       </div>
       <div class="middleschool">
-          <div id="p">
-            <span>
-              中学
-              <a class="dot-a"></a>
-              春季课
-            </span>
-            <span class="examne">
-              查看全部
-              <a class="icon iconfont icon-shezhi-youjiantou"></a>
-            </span>
-          </div>
+        <div id="p">
+          <span>
+            中学
+            <a class="dot-a"></a>
+            春季课
+          </span>
+          <span class="examne">
+            查看全部
+            <a class="icon iconfont icon-shezhi-youjiantou"></a>
+          </span>
+        </div>
         <div class="exchange">
           <ul>
             <li>
@@ -118,8 +116,16 @@
           </ul>
         </div>
       </div>
-      <Remediation></Remediation>
-      <Zujian></Zujian>
+      <Remediation v-for="(item, index) in mianshou" :item="item" :key="index"></Remediation>
+
+      <Remediation
+        background="#000"
+        v-for="(item, index) in mian"
+        :item="item"
+        :key="'info2-'+index"
+      ></Remediation>
+      <!-- <Zujian></Zujian> -->
+
       <!-- <Modal :show="show" :title="title" 
        @hideModal="hideModal"
         @submit="submit">      
@@ -128,6 +134,7 @@
   </div>
 </template>
 <script>
+import Module from "@/pages/classtransfer/module";
 import Swiper from "@/components/swiper/index";
 import Remediation from "@/components/remediation/index";
 import SJ from "@/components/time/SJ";
@@ -137,12 +144,58 @@ import Carthd from "@/components/carthd/index";
 import Modal from "@/components/popup/modal";
 import Head from "@/components/head/head";
 import Flashsale from "@/components/flashsale/index";
-export default {
+
+export default { 
+  name: "Date",
   data() {
     return {
       title: "确定转入该班级吗？",
       show: true,
-      title: [{ text: "首页" }],
+      herdtitle: "首页",
+      mianshou: [
+        {
+          mathematics: "面授-数学",
+          springtime: " 2020春季高一数学创新B班里滢星",
+          sprint: "期五冲刺班",
+          interest: "激发兴趣，塑造能力",
+          date: "报续周期：2019.1215 - 2020.01.22",
+          price: "1888",
+          pricee: "1888",
+          msimg: [
+            { img: require("../../assets/examl.png"), name: "张东来" },
+            {
+              img: require("../../assets/examl.png"),
+              name: "刘吴然"
+            },
+            {
+              img: require("../../assets/examl.png"),
+              name: "史密夫"
+            }
+          ]
+        }
+      ],
+      //
+      mian: [
+        {
+          mathematics: "面授-英语",
+          springtime: " 2019春季高一数学创新a班里滢星",
+          sprint: "期六冲刺班",
+          interest: "激发兴趣，塑造能力",
+          date: "报续周期：20020.1215 - 2020.01.22",
+          price: "1899",
+          msimg: [
+            { img: require("../../assets/examl.png"), name: "刘吴然" },
+            {
+              img: require("../../assets/examl.png"),
+              name: "刘浩然"
+            },
+            {
+              img: require("../../assets/examl.png"),
+              name: "刘琪琪"
+            }
+          ]
+        }
+      ],
       navList: [
         {
           name: "一对一",
@@ -197,7 +250,7 @@ export default {
   },
   components: {
     Swiper,
-    // Count,
+
     SJ,
     Remediation,
     Zujian,
@@ -217,11 +270,16 @@ export default {
     // go(){
     //   this.$router.push('/mine')
     // }
+  
   }
+  
 };
 </script>
 
 <style scoped   lang='less'>
+#p[data-v-60573688] {
+  background: pink !important;
+}
 .template-div {
   font-family: "微软雅黑";
   background: rgb(248, 249, 252);
@@ -391,18 +449,18 @@ export default {
   }
 }
 // aa
-#box{
-  margin:0 auto;
-  width:375px;
-
+#box {
+  margin: 0 auto;
+  width: 375px;
 }
 .boxcart {
-    width:100%;
+  width: 100%;
   height: 160px;
-  margin-right:200px;
-  white-space: nowrap; /*文本不会换行，文本会在在同一行上继续*/
+  margin-right: 200px;
+  white-space: nowrap; 
   overflow-y: auto; /*可滑动*/
   margin-left: 20px;
+  // border:solid red 1px;
 
   .cart {
     width: 315px;
@@ -413,97 +471,21 @@ export default {
     margin: 0 3px;
     vertical-align: middle;
 
-//     .lefts {
-//       display: inline-block;
-//       vertical-align: middle;
-//       width: 90px;
-//       height: 60px;
-//       // border: 1px red solid;
-//       color: #fff;
-//       margin-top: -16px;
-//       img {
-//         width: 112.5px;
-//         height: 75px;
-//       }
-//     }
-//     .rights {
-//       display: inline-block;
-//       vertical-align: middle;
-//       width: 158px;
-//       height: 96px;
-//       margin-top: 18px;
-//       margin-left: 30px;
-//       span {
-//         p {
-//           font-size: 16px;
-//           text-align: left;
-//           white-space: normal;
-//           line-height: 20px;
-//           margin-bottom: 20px;
-//         }
-//         .groupbooking {
-//           color: #fff;
-//           font-size: 11px;
-//           background: rgba(255, 125, 108, 1);
-//           margin-left: 3px;
-//           margin-right: 5px;
-//           padding: 0px 3px 0px 3px;
-//           border-radius: 2px;
-//           vertical-align: top;
-//         }
-//         .price {
-//           span {
-//             color: rgba(170, 172, 182, 1);
-//             font-size: 14px;
-//             text-decoration: line-through;
-//           }
-//           a {
-//             color: rgba(255, 93, 82, 1);
-//           }
-//           a:nth-child(2) {
-//             font-size: 14px;
-//           }
-//           a:nth-child(3) {
-//             font-size: 18px;
-//             vertical-align: bottom;
-//           }
-//         }
-//       }
-//     }
-//   }
-//   .time {
-//     width: 280px;
-//     height: 30px;
-//     // border: solid red 1px;
-//     margin: 0 -125px;
-//   }
-//   h6 {
-//     text-align: left;
-//     line-height: 30px;
-//     font-size: 13px;
-//     color: hsla(4, 100%, 66%, 1);
-//     span {
-//       float: right;
-//       color: #fff;
-//       background: hsla(4, 100%, 67%, 1);
-//       padding: 0 12px;
-//       border-radius: 20px;
-//       font-size: 12px;
-//     }
+    
   }
 }
 .middleschool {
   width: 375px;
   height: 150px;
   margin: 0 auto;
- 
+
   #p {
     display: flex;
     justify-content: space-between;
     padding: 28px 20px;
     span {
       font-size: 19px;
-    //  border:solid red 1px;
+      //  border:solid red 1px;
     }
     .examne {
       font-size: 13px;
@@ -522,8 +504,7 @@ export default {
     margin: 0 auto;
     background: #ffeeda;
     border-radius: 70px;
-  
-   
+
     ul {
       display: flex;
       justify-content: space-around;
@@ -558,7 +539,6 @@ export default {
           font-size: 10px;
         }
       }
-    
     }
   }
 }

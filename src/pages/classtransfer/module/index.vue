@@ -46,7 +46,6 @@
       </div>
     </div>
     <window @close="show=false" @confirm="show=false" :show="show"></window>
-    <!-- <window  :show="show"></window> -->
   </div>
 </template>
 <script>
@@ -58,22 +57,24 @@ export default {
       num: ""
     };
   },
+  created(){
+    
+  },
   components: {
-    // window
+    window
   },
   props: {
-    item: { type: Object },
+    // item: { type: Object },
     tabList: { type: Array },
     list: { type: Array }
   },
   methods: {
     showAlert() {
-   
+      this.show = true;
     },
     changetab(idx) {
       this.num = idx;
       this.$emit("tabChange", idx);
-         this.show = false;
     }
   }
 };
@@ -106,6 +107,7 @@ svg.svg-icon {
 
   li {
     font-size: 16px;
+    
   }
 }
 .tabContent {

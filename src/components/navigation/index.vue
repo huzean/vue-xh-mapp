@@ -12,6 +12,7 @@
             <p :class="num==index?'change':''" ></p>
         
           </span>
+          
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ export default {
       this.$emit("hideModal");
     },
     submit() {
-      this.$emit("submit");
+      this.$emit("submitt");
     },
     setStartingPoint(e) {
       this.x = e.clientX - this.node.offsetLeft;

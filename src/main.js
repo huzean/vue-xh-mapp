@@ -8,6 +8,7 @@ import VueScroller from 'vue-scroller'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import 'lib-flexible'
+
 // 下拉
 
 import { PullRefresh } from 'vant';

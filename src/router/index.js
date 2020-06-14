@@ -8,8 +8,9 @@ import discountcoupon from '@/pages/home/discountcoupon'
 import nearbycampus from '@/pages/nearbyCampus'
 import classtransfer from '@/pages/classtransfer'
 import Selecttheclass from '@/pages/Selecttheclass'
-
-
+import fu from'@/demo/fu'
+import Theorderlist from'@/pages/indent/Theorderlist'
+ 
 
 Vue.use(Router)
 
@@ -23,6 +24,8 @@ export default new Router({
       { path: "/nearbycampus", component:nearbycampus },
       { path: "/classtransfer", component:classtransfer },
       { path: "/Selecttheclass", component:Selecttheclass },
+      { path: "/fu", component:fu},
+      { path: "/Theorderlist", component:Theorderlist},
      
      
     

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      button {
+        margin: 10px;
+        width: 100px;
+        height: 40px;
+        cursor: pointer;
+      }
+      .current {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+      <div>
+          <input type="text " placeholder="请输入名字 ">
+          <button> click me </button>
+      </div>
+
+      <ul>
+          <li>我是小明</li>
+      </ul>
+    <!-- <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button class='btn'>按钮5</button> -->
+
+    <script>
+      //需求：鼠标放到哪个button上，改button变成黄色背景（添加类）
+
+      var btnArr = document.getElementsByTagName("button");
+      var btns = document.querySelectorAll('.btn')
+
+      //绑定事件
+      for (var i = 0; i < btnArr.length; i++) {
+        //要为每一个按钮绑定事件，所以用到了for循环
+        btnArr[i].onmouseover = function() {
+          this.className = "current"; //【重要】核心代码
+        };
+        btnArr[i].onmouseout = function() {
+          //鼠标离开任何一个按钮时，就把按钮的背景色还原
+          this.className = "";
+        };
+      }
+    </script>
+  </body>
+</html>

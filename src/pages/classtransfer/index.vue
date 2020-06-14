@@ -1,146 +1,66 @@
 <template>
   <div id="box">
-    <Head v-for="(item,index) in title " :key="index" :title="item.text"></Head>
-    <ul class="nav-title">
-      <li
-        v-for="(item,index) in Listnav"
-        :key="index"
-        :class="num==index?'changeColor':''"
-        @click="tabs(index)"
-      >
-        {{item.text}}
-        <p :class="num==index?'box':''"></p>
-      </li>
-    </ul>
-     <!--:key="'info2-'+index" -->
-    <div class="tabContent">
-      <div
-        class="discounts"
-        v-for="(item,index) in  tabcon"
-        :key="'info2-'+index"
-        v-show="index==num"
-      >
-        <div class="content">
-          <span>
-            <p id="text">
-              {{item.English}}
-              <a class="dot-a"></a>
-              {{item.text}}
-            </p>
-            <i class="character">{{item.introduce}}</i>
-            <h6 class="site">
-              <svgIcon iconName="icondizhi" />
-              {{item.site}}
-            </h6>
-            <a class="time">
-              <svgIcon iconName="iconshijian" />
-              {{item.time}}
-            </a>
-            <ul class="picture">
-              <li>
-                <img :src="item.img" />
-              </li>
-              <li>
-                <div>{{item.name}}</div>
-                <div>{{item.names}}</div>
-              </li>
-              <div class="select">
-                <a href>{{item.select}}</a>
-              </div>
-            </ul>
-          </span>
-        </div>
-      </div>
-    </div>
-    <br />
-    <!--  -->
-    <div class="tabContent">
-      <!--:key="'info2-'+index" -->
-      <div
-        class="discounts"
-        v-for="(item,index) in  tabcon"
-        :key="'info2-'+index"
-        v-show="index==num"
-      >
-        <div class="content">
-          <span>
-            <p id="text">
-              {{item.English}}
-              <a class="dot-a"></a>
-              {{item.text}}
-            </p>
-            <i class="character">{{item.introduce}}</i>
-            <h6 class="site">
-              <svgIcon iconName="icondizhi" />
-              {{item.site}}
-            </h6>
-            <a class="time">
-              <svgIcon iconName="iconshijian" />
-              {{item.time}}
-            </a>
-            <ul class="picture">
-              <li>
-                <img :src="item.img" />
-              </li>
-              <li>
-                <div>{{item.name}}</div>
-                <div>{{item.names}}</div>
-              </li>
-              <div class="select">
-                <a href>{{item.select}}</a>
-              </div>
-            </ul>
-          </span>
-        </div>
-      </div>
-    </div> 
+    <Head :title="title"></Head>
+    <Module @tabChange="tabChange" :tabList="tabList" :list="list"></Module>
   </div>
 </template>
 <script>
 import Head from "@/components/head/head";
-
+import Module from "@/pages/classtransfer/module";
 export default {
   name: "",
   data() {
     return {
-      max: 0,
-      isOpen: false,
-      num: "",
-      title: [{ text: "我的优惠券" }],
-      Listnav: [{ text: "面授" }, { text: "双师" }],
-
-      tabcon: [
+      title: "我的优惠券",
+      tabList: [{ title: "双师" }, { title: "面授" }],
+      list1: [
         {
-          English: "英语",
-          text: "面授",
-          introduce: "2020年春季六年级英语压轴突破班做换行处理最多不超过2行",
-          site: "岗顶教学点",
+          miansou: "面授",
+          textb: "英语",
+          introduce: "2020年春季六年级英语压轴突破班做换行处理最多不超过6行",
+          site: "猎德教学点",
           time: "2019.12.15-2020.01.22 10:00-12:00",
           img: require("../../assets/examl.png"),
-          name: "刘然然",
-          names: "授课",
-          select: "选择班级"
-        },
-        {
-          English: "英语",
-          text: "面授",
-          introduce: "2019年春季初一级英语压轴突破班做换行处理最多不超过2行",
-          site: "岗顶教学点",
-          time: "2019.12.15-2020.01.22 10:00-12:00",
-          img: require("../../assets/examl.png"),
-          name: "张然然",
+          name: "刘小东",
           names: "授课",
           select: "选择班级"
         }
-      ]
+      ],
+      list2: [
+        {
+          miansou: "面授",
+          textb: "语文",
+          introduce: "2018年春季六年级英语压轴突破班做换行处理最多不超过5行",
+          site: "岗顶教学点",
+          time: "2019.12.15-2020.01.22 10:00-12:00",
+          img: require("../../assets/examl.png"),
+          name: "然然",
+          names: "授课",
+          select: "选择班级"
+        }
+      ],
+
+      list: []
     };
   },
+
   components: {
+    Module,
     Head
   },
+  created() {
+    this.list = this.list1;
+  },
   methods: {
-    tabs(index) {
-      this.num = index;
+    tabChange(idx) {
+      setTimeout(() => {
+        if (idx === 0) {
+          this.list = this.list1;
+        }
+        if (idx === 1) {
+          this.list = this.list2;
+        }
+      }, 500);
     }
   }
 };
@@ -188,8 +108,7 @@ svg.svg-icon {
   top: 0px;
   left: 0;
   right: 0;
-  //  display: flex;
-  // align-items: center;
+
   margin: 0 auto;
   .content {
     span {
@@ -197,7 +116,7 @@ svg.svg-icon {
       height: 200px;
       margin: 18px auto;
       display: inline-block;
-      // border: solid red 0.1px;
+
       text-align: left;
       #text {
         width: 55px;

@@ -1,9 +1,8 @@
 <template>
   <header class="head">
     <span class="icon-wrap">
-      <slot name="left" >
-          <svgIcon iconName="iconarrow_back" /> 
-         
+      <slot name="left">
+        <svgIcon iconName="iconarrow_back" />
       </slot>
     </span>
     <p class="content">{{title}}</p>
@@ -21,15 +20,13 @@ export default {
   props: {
     title: {
       type: String,
-      defaule: "",
-    },
-   
+      defaule: ""
+    }
   }
 };
 </script>
 
 <style scoped  lang='less'>
-
 .head {
   box-sizing: border-box;
   position: fixed;
@@ -43,8 +40,8 @@ export default {
   line-height: 44px;
   display: flex;
   align-items: center;
-  margin:0 auto;
-  background:#fff;
+  margin: 0 auto;
+  background: #fff;
   .icon-wrap {
     width: 30px;
     height: 30px;

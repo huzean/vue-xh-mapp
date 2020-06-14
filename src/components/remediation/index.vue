@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="Predictionof" v-for="(item, index) in mianshou" :key="index">
+    <div class="Predictionof">
       <span>
-        <p>{{item.mathematics}}</p>
+        <p id="p" :style="stylebg">{{item.mathematics}}</p>
         <h5>
           {{item.springtime}}
           <h6>{{item.sprint}}</h6>
@@ -11,59 +11,39 @@
       <ul class="Predictionof-ul">
         <li>{{item.interest}}</li>
         <li>{{item.date}}</li>
-        <div>
-          <h4>
-            <img v-for="(item, index) in msimg" :key="index" :src="item.img" alt />
-          </h4>
-          <div v-for="(item, index) in headportrait " :key="index">
-          <span>
-            <a href>{{item.texta}}</a>
-            <a href>{{item.textb}}</a>
-            <a href>{{item.textc}}</a>
-          </span>
-          <span id="price">
-            <a href>￥</a>
-          {{item.price}}
-            <a href>起</a>
-          </span>
+        <li id="price">
+          <div id="name" v-for="(obj, index) in item.msimg" :key="index">
+            <img :src="obj.img" alt />
+            <p>{{obj.name}}</p>
           </div>
-        </div>
+          <div id="box">
+            <a href>￥</a>{{item.price}}<a href>起</a>
+          
+          </div>
+
+        </li>
       </ul>
     </div>
   </div>
 </template>
 <script>
 export default {
-  data() {
+   data() {
     return {
-      mianshou: [
-        {
-          mathematics: "面授-数学",
-          springtime: " 2020春季高一数学创新B班里滢星",
-          sprint: "期五冲刺班",
-          interest: "激发兴趣，塑造能力",
-          date: "报续周期：2019.1215 - 2020.01.22"
-        }
-      ],
-      msimg: [
-        { img: require("../../assets/examl.png") },
-        {
-          img: require("../../assets/examl.png")
-        },
-        {
-          img: require("../../assets/examl.png")
-        }
-      ],
-      headportrait:[
-        {
-          texta:"刘吴然",
-          textb:"张东来",
-          textc:"史密夫",
-          price:"1889"
-        }
-      ]
+      
     };
-  }
+  },
+  props: {
+    item: { type: Object },
+   background:{type:String}
+  },
+   computed:{
+        stylebg:function(){
+            return {
+                background:this.background
+            }
+        }}
+        
 };
 </script>
 <style scoped lang="less">
@@ -79,8 +59,9 @@ export default {
     display: inline-block;
     vertical-align: middle;
     margin-top: 18px;
+    color: red;
   }
-  p {
+  #p {
     width: 57px;
     height: 15px;
     margin-top: -5px;
@@ -90,6 +71,7 @@ export default {
     border-radius: 5px;
     font-size: 11px;
     line-height: 15px;
+    color: #fff;
   }
   h5 {
     width: 250px;
@@ -107,6 +89,28 @@ export default {
   }
 }
 .Predictionof-ul {
+  #price {
+    width: 313px;
+    // border: solid red 1px;
+    margin: 0 auto;
+    display: flex;
+
+    #name {
+      display: inline-block;
+      // border: solid red 1px;
+
+      　 p {
+        font-size: 8px;
+        color: #000;
+      }
+    }
+    #box {
+      // border: solid red 1px;
+      width: 100px;
+      margin-left: 67px;
+      margin-top: 30px;
+    }
+  }
   li {
     font-size: 13px;
     color: #8e919e;
@@ -156,8 +160,8 @@ export default {
   }
 }
 #price {
-  margin-top: -10px;
-  margin-left: 240px;
+  // margin-top: -10px;
+  // margin-left: 240px;
   color: #ff5d52ff;
 
   font-size: 18px;
